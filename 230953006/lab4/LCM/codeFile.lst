@@ -1,0 +1,174 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 10001000        DCD              0x10001000
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008                 AREA             mycode,CODE,READONLY
+    8 00000000                 ENTRY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000         Reset_Handler
+   11 00000000 490C            LDR              R1, =N1
+   12 00000002 4A0D            LDR              R2, =N2
+   13 00000004 4B0D            LDR              R3, =RESULT
+   14 00000006         
+   15 00000006 680C            LDR              R4, [R1]
+   16 00000008 6815            LDR              R5, [R2]
+   17 0000000A F04F 0001       MOV              R0, #1
+   18 0000000E         LOOP
+   19 0000000E 4607            MOV              R7, R0
+   20 00000010 FB04 F700       MUL              R7, R4, R0
+   21 00000014 FBB7 F9F5       UDIV             R9, R7, R5
+   22 00000018 FB09 7815       MLS              R8, R9, R5, R7
+   23 0000001C         
+   24 0000001C F1B8 0F00       CMP              R8, #0
+   25 00000020 D002            BEQ              DONE
+   26 00000022         
+   27 00000022 F100 0001       ADD              R0, R0, #1
+   28 00000026 E7F2            B                LOOP
+   29 00000028         DONE
+   30 00000028 601F            STR              R7, [R3]
+   31 0000002A         STOP
+   32 0000002A E7FE            B                STOP
+   33 0000002C         
+   34 0000002C 00000004 
+                       N1      DCD              0x00000004
+   35 00000030 00000002 
+                       N2      DCD              0x00000002
+   36 00000034         
+   37 00000034 00000000 
+              00000000 
+              00000000         AREA             myArea,DATA,READWRITE
+   38 00000000 00000000 
+                       RESULT  DCD              0
+   39 00000004         
+   40 00000004         END
+                       
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=codeFile
+.d -ocodeFile.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\AR
+M\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=codeFile.lst codeFile.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file codeFile.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file codeFile.asm
+   Uses
+      At line 2 in file codeFile.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DONE 00000028
+
+Symbol: DONE
+   Definitions
+      At line 29 in file codeFile.asm
+   Uses
+      At line 25 in file codeFile.asm
+Comment: DONE used once
+LOOP 0000000E
+
+Symbol: LOOP
+   Definitions
+      At line 18 in file codeFile.asm
+   Uses
+      At line 28 in file codeFile.asm
+Comment: LOOP used once
+N1 0000002C
+
+Symbol: N1
+   Definitions
+      At line 34 in file codeFile.asm
+   Uses
+      At line 11 in file codeFile.asm
+Comment: N1 used once
+N2 00000030
+
+Symbol: N2
+   Definitions
+      At line 35 in file codeFile.asm
+   Uses
+      At line 12 in file codeFile.asm
+Comment: N2 used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 10 in file codeFile.asm
+   Uses
+      At line 5 in file codeFile.asm
+      At line 9 in file codeFile.asm
+
+STOP 0000002A
+
+Symbol: STOP
+   Definitions
+      At line 31 in file codeFile.asm
+   Uses
+      At line 32 in file codeFile.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 7 in file codeFile.asm
+   Uses
+      None
+Comment: mycode unused
+7 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+END 00000004
+
+Symbol: END
+   Definitions
+      At line 40 in file codeFile.asm
+   Uses
+      None
+Comment: END unused
+RESULT 00000000
+
+Symbol: RESULT
+   Definitions
+      At line 38 in file codeFile.asm
+   Uses
+      At line 13 in file codeFile.asm
+Comment: RESULT used once
+myArea 00000000
+
+Symbol: myArea
+   Definitions
+      At line 37 in file codeFile.asm
+   Uses
+      None
+Comment: myArea unused
+3 symbols
+345 symbols in table
